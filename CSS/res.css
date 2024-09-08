@@ -1,0 +1,68 @@
+/* big phones */
+@media screen and (max-width:699px){
+    #big-device{
+        display: block;
+    }
+    #app{
+        display: none;
+    }
+    .admin-dash-data .boxes{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .admin-dash-data .boxes .box{
+        min-width: 100%;
+        max-width: 120%;
+        padding: 15px 20px;
+    }
+    .admin-dash{
+        padding: 35px;
+    }
+}
+/* small phones */
+@media screen and (max-width:450px){
+    #big-device{
+        display: none;
+    }
+    #app{
+        display: block;
+    }
+    .admin-dash-data .boxes{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .admin-dash-data .boxes .box{
+        min-width: 100%;
+        max-width: 120%;
+        padding: 15px 20px;
+    }
+    .admin-dash{
+        /* padding: 25px; */
+        padding: 30px 12px 10px 12px;
+    }
+
+}
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1024px){
+    #big-device{
+        display: none;
+    }
+    .admin-dash-data .boxes{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .admin-dash-data .boxes .box{
+        min-width: 100%;
+        max-width: 120%;
+        padding: 15px 20px;
+    }
+}
+/* laptops */
+@media screen and (min-width:1024px) {
+    #big-device{
+        display: block;
+    }
+    #app{
+        display: none;
+    }
+}

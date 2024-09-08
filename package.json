@@ -1,0 +1,15 @@
+{
+  "name": "educonnect",
+  "version": "1.0.0",
+  "description": "EduConnect is a multipage web application for university students, allowing them to sign up, log in, and access various resources such as course materials, study groups, event calendars, discussion forums, a resource library, tutoring services, career services, announcements, and a contact directory. The application uses JSON Server to simulate a backend for storing user data and resources.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  }
+}

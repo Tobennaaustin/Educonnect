@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login & Registration Form</title>
+  <link rel="stylesheet" href="CSS/sstyles2.css">
+  <link rel="shortcut icon" href="images/icon1.png" type="image/x-icon">
+</head>
+
+<body>
+  <div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+      <header>
+        <img src="images/icon1.png" alt="" style="width: 50px;">
+        <p>Login</p>
+      </header>
+      <form action="#">
+        <input type="text" id='inUsr' placeholder="Enter your email">
+        <input type="password" id="inPass" placeholder="Enter your password">
+        <span class="signup">
+          <a href="#" id="forgotLabel">Forgot password?</a>
+        </span>
+        <input type="button" class="button loginbtn" value="Login">
+      </form>
+      <div class="signup">
+        <span class="signup">Don't have an account?
+          <a href="#" id="signupLabel">Signup</a>
+        </span>
+      </div>
+    </div>
+    <div class="registration form">
+      <header>
+        <img src="images/icon1.png" alt="" style="width: 50px;">
+        <p>Signup</p>
+      </header>
+      <form action="#">
+        <input type="text" id="name" placeholder="Enter your name">
+        <input type="text" id='username' placeholder="Enter your username">
+        <input type="text" id='email' placeholder="Enter your email">
+        <input type="password" id='password' placeholder="Create a password">
+        <input type="button" class="button signupbtn" value="Signup">
+      </form>
+      <div class="signup">
+        <span class="signup">Already have an account?
+          <a href="#" id="loginLabel">Login</a>
+        </span>
+      </div>
+    </div>
+    <div class="forgot form">
+      <header>
+        <img src="images/icon1.png" alt="" style="width: 50px;">
+        <p>Forgot Password</p>
+      </header>
+      <form action="#">
+        <input type="text" id='forgotinp' placeholder="Enter your email">
+        <input type="button" class="button forgotbtn" value="Submit">
+      </form>
+      <div class="signup">
+        <span class="signup">Don't have an account?
+          <a href="#" id="signupLabel">Signup</a>
+        </span>
+      </div>
+      <div class="signup">
+        <span class="signup">Already have an account?
+          <a href="#" id="loginLabel">Login</a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="JS/signup.js"></script>
+</body>
+
+</html>
