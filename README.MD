@@ -19,7 +19,8 @@ This project is using [Firebase Auth](https://firebase.google.com/) for user aut
 
 ## Structure
 
-project-root/
+```bash
+    project-root/
 │
 ├── index.html
 ├── admin.html
@@ -58,3 +59,4 @@ project-root/
 ├── package-lock.json
 |
 └── package.json
+  ```
