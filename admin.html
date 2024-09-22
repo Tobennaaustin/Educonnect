@@ -1,137 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin page</title>
-    <link rel="stylesheet" href="styles/admin.css">
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/res.css">
-    
-    <!-- Boxicons -->
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- Iconscout CSS -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <title>Multi-Page Website</title>
+
+    <style>
+        :root {
+    --light-primary: #6A9C89;
+    --light-secondary: #C4DAD2;
+    --light-bg: #E9EFEC;
+    --dark-primary: #EEF5FF;
+    --dark-secondary: #B4D4FF;
+    --dark-bg: #176B87;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: var(--light-primary);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    background-color: var(--light-secondary);
+    padding: 1rem;
+    text-align: center;
+}
+
+button {
+    background-color: var(--light-primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Dark theme */
+body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-primary);
+}
+
+header.dark-mode {
+    background-color: var(--dark-secondary);
+}
+
+button.dark-mode {
+    background-color: var(--dark-primary);
+}
+
+    </style>
 </head>
-
 <body>
-    <div id="Admin-app">
-        <div id="login-section">
-            <div id="admin-login-form">
-                <h1>Welcome Admin</h1>
-                <div class="form-element">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="">
-                </div>
-                <div class="form-element">
-                    <label for="password">Password</label>
-                    <input type="password" id="admin-password" placeholder="Enter admin password">
-                </div>
+    <header>
+        <h1>Welcome to My Website</h1>
+        <button id="theme-toggle">Toggle Theme</button>
+    </header>
 
-                <button onclick="checkPassword()">Login</button>
-                <p id="login-message"></p>
-            </div>
-        </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
-        <div id="admin-section" style="display:none;">
-            <div class="admin-header">
-                <div class="adminlogo">
-                    <h1>Admin</h1>
-                </div>
-                <div class="admin-opensearch">
-                    <button id="myBtn" style="padding: 5px; background-color: white; border-radius: 5px; border: 2px solid rgba(39, 37, 37, 0.594);"><i class='bx bx-search'></i> Search By Matric Number</button>
-                </div>
-                <div class="admin-logout">
-                    <a href="admin.html" style="padding: 10px; font-size: 15px; border: none; border-radius: 5px; color: black; background-color: white;"><i class='bx bxs-exit'></i></a>
-                </div>
-            </div>
+    <main>
+        <h2>Home Page</h2>
+        <p>This is the content of the home page.</p>
+    </main>
 
-            <!-- search modal -->
-            <div id="myModal" class="modal">
+    <script>
+        // Function to toggle theme
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('header').classList.toggle('dark-mode');
+    document.querySelector('button').classList.toggle('dark-mode');
 
-                <div class="modal-content">
-                    <span class="close"   title="logout">&times;</span>
-                    <div id="search-section">
-                        <input type="text" id="search-matric" placeholder="Enter matric number" style="padding: 5px; background-color: white; border-radius: 5px; border: 2px solid rgba(39, 37, 37, 0.594);">
-                        <button onclick="searchUser()" style="padding: 5px; background-color: white; border-radius: 5px; border: 2px solid rgba(39, 37, 37, 0.594);"><i class='bx bx-search'></i></button>
-                    </div>
-                    <p id="search-message"></p>
-                    <div id="search-result" style="display: none;">
-                        <h3>User Details</h3>
-                        <ul id="user-details"></ul>
-                    </div>
-                </div>
+    // Save the selected theme to localStorage
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+}
 
-            </div>
+// Check the saved theme on page load
+window.onload = function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.querySelector('header').classList.add('dark-mode');
+        document.querySelector('button').classList.add('dark-mode');
+    }
 
-            <div class="admin-dash">
-                <div class="admin-dash-head">
-                    <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Dashboard</span>
-                </div>
+    // Add event listener to the toggle button
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+};
 
-                <div class="admin-dash-data">
-                    <div class="boxes">
-                        <div class="box box1">
-                            <i class="bx bxs-user"></i>
-                            <span class="text">Total Users</span>
-                            <span class="number" id="user-count">0</span>
-                        </div>
-                        <div class="box box2">
-                            <i class="uil uil-comments"></i>
-                            <span class="text">Auth-Matrics</span>
-                            <span class="number" id="authmatric-count"></span>
-                        </div>
-                        <div class="box box3">
-                            <i class="uil uil-share"></i>
-                            <span class="text">Total Share</span>
-                            <span class="number">10,120</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="activity">
-                    <div class="title">
-                        <i class="uil uil-clock-three"></i>
-                        <span class="text">Recent Activity</span>
-                    </div>
-                    <div class="activity-data">
-                        <table id="users-table" >
-                            <thead>
-                                <tr class="w3-light-blue">
-                                    <th>Name</th>
-                                    <th>Level</th>
-                                    <th>Matric Number</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Don't worry javascript go handle am -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="add-matric">
-                    <div class="title">
-                        <i class="uil uil-clock-three"></i>
-                        <span class="text">Add Matric Number</span>
-                    </div>
-                    <div class="addmatric-form">
-                        <input type="text" id="new-matric" placeholder="Enter Matric Number">
-                        <button onclick="addMatricNumber()"><i class='bx bx-plus-circle'></i>Add</button>
-                        <p id="add-message"></p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="scripts/admin.js"></script>
+    </script>
 </body>
-
 </html>

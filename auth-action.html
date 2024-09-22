@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Action</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="CSS/email-verfication.css">
+    <link rel="icon" href="images/white-icon.jpg" type="image/x-icon">
+</head>
+
+<body>
+
+    <div id="content" class="container">
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCDYsXcsrtVujNg_GY5MTkTKxKDJ---1J0",
+            authDomain: "resourcehub-8c1f4.firebaseapp.com",
+            projectId: "resourcehub-8c1f4",
+            storageBucket: "resourcehub-8c1f4.appspot.com",
+            messagingSenderId: "278307611427",
+            appId: "1:278307611427:web:ddc00adfbb03b8eda5e296",
+            measurementId: "G-H4SN9PCNBM",
+        };
+
+        const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+        // Extract URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const mode = urlParams.get('mode'); // Action to complete (resetPassword, verifyEmail)
+        const actionCode = urlParams.get('oobCode'); // One-time code to verify or reset
+        const continueUrl = urlParams.get('continueUrl'); // Optional continuation URL
+        const lang = urlParams.get('lang') || 'en'; // Optional language code
+
+        
+        const contentDiv = document.getElementById('content');
+
+        switch (mode) {
+            case 'resetPassword':
+                // Display reset password form
+                contentDiv.innerHTML = `
+          <div class="forgot form">
+            <header>Reset Password</header>
+            <form id="resetPasswordForm">
+                <input type="password" id="newPassword" placeholder="Enter New Password" required>
+                <input type="submit" class="button forgotbtn" value="Submit">
+            </form>
+        </div>
+        `;
+
+                document.getElementById('resetPasswordForm').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const newPassword = document.getElementById('newPassword').value;
+
+                    // Reset the user's password
+                    firebase.auth().confirmPasswordReset(actionCode, newPassword)
+                        .then(() => {
+                            
+                            contentDiv.innerHTML = ` <div class="sucess"> <p> Invalid or unknown action mode. </p> </div> `;
+                        })
+                        .catch(error => {
+                            contentDiv.innerHTML = `<div class="error"> <p> Error: ${error.message} </p> </div>`;
+                        });
+                });
+                break;
+
+            case 'verifyEmail':
+                // Handle email verification
+                firebase.auth().applyActionCode(actionCode)
+                    .then(() => {
+                        contentDiv.innerHTML = `
+                        <div class="email-message">
+            <img src="images/undraw_opened_re_i38e.svg" alt="">
+
+            <h2>Email Verified</h2>
+            <p>Congratulations your email address has been verified.</p>
+            <p>Go back to the login page.</p>
+        </div> `;
+                    })
+                    .catch(error => {
+                        contentDiv.innerHTML = `<div class="error"> <p> Error: ${error.message} </p> </div>`;
+                    });
+                break;
+
+            default:
+                contentDiv.innerHTML = ` <div class="error"> <p> Invalid or unknown action mode. </p> </div> `;
+        }
+    </script>
+
+</body>
+
+</html>
