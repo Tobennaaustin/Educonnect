@@ -61,7 +61,7 @@
                     firebase.auth().confirmPasswordReset(actionCode, newPassword)
                         .then(() => {
                             
-                            contentDiv.innerHTML = ` <div class="sucess"> <p> Invalid or unknown action mode. </p> </div> `;
+                            contentDiv.innerHTML = ` <div class="sucess"> <p> Password changed successfuly</p> </div> `;
                         })
                         .catch(error => {
                             contentDiv.innerHTML = `<div class="error"> <p> Error: ${error.message} </p> </div>`;
